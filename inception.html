@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspection & Contrôle non destructif (CND)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8faff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0;
+            width: 100%;
+        }
+
+        .header img {
+            width: 50%;
+            height: auto;
+            margin: 0;
+        }
+
+        .header-text {
+            max-width: 50%;
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .header-text p {
+            color: #666;
+            font-size: 14px;
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        .header-text h1 {
+            color: #003366;
+            font-size: 56px;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .content-wrapper {
+            background-color: #e5eaed;
+            width: 100%;
+            padding: 40px 0;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: row;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .intro {
+            flex: 1;
+            max-width: 450px;
+            margin-right: 40px;
+        }
+
+        .intro h1 {
+            color: #003366;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .intro p {
+            font-size: 20px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .challenges {
+            flex: 2;
+        }
+
+        .challenges-section {
+            background-color: #e5eaed;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .challenges-section h2 {
+            color: #003366;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .challenges-section p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        .challenges-section ul {
+            padding-left: 20px;
+        }
+
+        .challenges-section li {
+            margin-bottom: 10px;
+        }
+
+        .points-forts-container {
+            background-color: #003366;
+            padding: 80px 0; /* Increased padding */
+            color: #fff;
+        }
+
+        .points-forts-container .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .points-forts-text {
+            max-width: 30%;
+        }
+
+        .points-forts-text h1 {
+            font-size: 24px; /* Decreased font size */
+            margin-bottom: 15px; /* Adjusted margin */
+        }
+
+        .points-forts-text p {
+            font-size: 14px; /* Decreased font size */
+        }
+
+        .points-forts-content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px; /* Adjusted gap */
+            max-width: 65%;
+        }
+
+        .point-fort {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .point-fort i {
+            font-size: 30px; /* Decreased font size */
+            margin-right: 15px; /* Adjusted margin */
+        }
+
+        .point-fort h2 {
+            font-size: 16px; /* Decreased font size */
+            margin: 0 0 8px; /* Adjusted margin */
+        }
+
+        .point-fort p {
+            margin: 0;
+            font-size: 12px; /* Decreased font size */
+        }
+
+        .discutons-container {
+            background-color: #e63946;
+            color: #fff;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .discutons-container {
+            background-color: #e63946;
+            color: #fff;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .discutons-content {
+            max-width: 50%;
+        }
+
+        .discutons-content h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .discutons-content p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .discutons-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #fff;
+            color: #e63946;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-decoration: none;
+            border: 2px solid #fff;
+            border-radius: 5px;
+        }
+
+        .discutons-image {
+            max-width: 50%;
+        }
+
+        .discutons-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .approach-container {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 40px;
+            background-color: #f8faff;
+        }
+
+        .approach-wrapper {
+            display: flex;
+        }
+
+        .approach-list-vertical {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 30%;
+        }
+
+        .approach-list-vertical li {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .approach-list-vertical li:hover h2,
+        .approach-list-vertical li.active h2 {
+            color: #e63946;
+        }
+
+        .approach-list-vertical li h2 {
+            font-size: 20px;
+            margin: 0;
+            color: #666;
+            transition: color 0.3s;
+        }
+
+        .approach-content {
+            display: none;
+            padding: 20px;
+            background-color: #f8faff;
+            border-radius: 8px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+            width: 70%;
+        }
+
+        .approach-content.active {
+            display: flex;
+        }
+
+        .approach-content ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            flex: 1;
+            margin: 0;
+        }
+
+        .approach-content li {
+            flex: 0 0 calc(50% - 20px);
+            font-size: 16px;
+            line-height: 2;
+            margin-bottom: 20px;
+        }
+
+        .approach-content li.full {
+            flex-basis: 100%;
+        }
+
+        .services-section {
+            background-color: #ffffff; /* Updated background color */
+            width: 100%;
+            padding: 40px 0;
+        }
+
+        .services-section .services-content {
+            background-color: #ffffff; /* Ensure inner content has a white background */
+            padding: 20px;
+            
+            max-width: 800px; /* Center content with max-width */
+            margin: 0 auto; /* Center content */
+            text-align: justify; /* Justify text */
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .header img,
+            .header-text {
+                max-width: 100%;
+                padding: 0;
+                text-align: center;
+            }
+
+            .header-text {
+                padding-left: 0;
+                margin-top: 20px;
+            }
+
+            .header-text h1 {
+                font-size: 40px;
+            }
+
+            .content {
+                flex-direction: column;
+                padding: 0 20px;
+            }
+
+            .points-forts-container .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .points-forts-text {
+                max-width: 100%;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .points-forts-content {
+                max-width: 100%;
+                grid-template-columns: 1fr;
+            }
+
+            .discutons-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .discutons-content {
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .discutons-image {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="imgs/aim-service.png" alt="Inspection & Contrôle non destructif (CND)">
+        <div class="header-text">
+            <p>HOME ➔ Inspection & Contrôle non destructif (CND)</p>
+            <h1>Inspection & Contrôle <br>non destructif (CND)</h1>
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <div class="content">
+            <section class="intro">
+                <h1>Inspection & Contrôle non destructif (CND)</h1>
+                <p>L’inspection et le contrôle non destructif, pour réduire les risques, assurer la fiabilité des installations, se conformer à la réglementation ou à la suite d'une défaillance.</p>
+            </section>
+            <section class="challenges">
+                <div class="challenges-section">
+                    <h2>Vos défis & enjeux</h2>
+                    <p>Vous souhaitez inspecter vos équipements et structures ou disposer d'un avis extérieur sur un produit métallique, composite ou multi-matériaux.</p>
+                    <p>Dans cette optique, vous cherchez un expert pour :</p>
+                    <ul>
+                        <li>Réaliser des contrôles par des intervenants certifiés COFREND (ISO 9712)</li>
+                        <li>Identifier et déployer la solution la plus pertinente pour détecter des défauts et pour les caractériser</li>
+                        <li>Vous apporter une expertise ou contre-expertise confidentielle, garantie en terme de neutralité</li>
+                        <li>Vous aider à anticiper et respecter les normes et les codes en lien avec votre activité</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="services-section">
+        <div class="services-content">
+            <section class="challenge">
+                <h2>Nos services</h2>
+                <p>L’équipe Cetim Maroc vous accompagne de la définition du cahier des charges jusqu’à la réalisation des contrôles et inspections.</p>
+                <p>A partir d’une analyse de votre besoin, nous vous recommandons une méthode de contrôle adaptée, parmi une multitude de techniques conventionnelles ou avancées dont l'imagerie ultrasonore TOFD, le contrôle ultrasonore multi-éléments (Phased Array), la thermographie infrarouge active ou encore les ondes guidées.</p>
+                <ul>
+                    <li>Ressuage, magnétoscopie, mesures d’épaisseur</li>
+                    <li>Ultrasons, TOFD, UTPA</li>
+                    <li>Courants de Foucault, IRIS, ondes guidées</li>
+                    <li>Répliques métallographiques</li>
+                    <li>Émission acoustique</li>
+                </ul>
+                <p>Nous assurons également la réalisation des inspections suivantes :</p>
+                <ul>
+                    <li>Inspection des appareils sous pression (API 510)</li>
+                    <li>Inspection de la tuyauterie (API 570)</li>
+                    <li>Inspection de réservoir (API 653)</li>
+                    <li>Aptitude au service (API 579)</li>
+                    <li>Services d’inspection basés sur les risques (API 580)</li>
+                    <li>Corrosion et matériaux (API 571)</li>
+                </ul>
+                <p>Nos experts accompagnent la montée en compétence de vos équipes au travers des formations Cetim Academy® de préparation à la certification COFREND</p>
+            </section>
+        </div>
+    </div>
+
+    <div class="points-forts-container">
+        <div class="container">
+            <div class="points-forts-text">
+                <h1>Nos points forts</h1>
+            </div>
+            <div class="points-forts-content">
+                <div class="point-fort">
+                    <i class="fas fa-tools"></i>
+                    <div>
+                        <h2>UNE COMBINAISON UNIQUE D’EXPERTISES TECHNIQUES</h2>
+                    </div>
+                </div>
+                <div class="point-fort">
+                    <i class="fas fa-cogs"></i>
+                    <div>
+                        <h2>UNE CONFORMITÉ ASSURÉE AVEC LA RÉGLEMENTATION EXISTANTE ET À VENIR</h2>
+                    </div>
+                </div>
+                <div class="point-fort">
+                    <i class="fas fa-lightbulb"></i>
+                    <div>
+                        <h2>DES MOYENS INNOVANTS ET DEDIÉS</h2>
+                    </div>
+                </div>
+                <div class="point-fort">
+                    <i class="fas fa-users"></i>
+                    <div>
+                        <h2>UN ACCOMPAGNEMENT ET UNE DÉMARCHE STRUCTURÉS</h2>
+                    </div>
+                </div>
+                <div class="point-fort">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h2>25 ANS DE R&D</h2>
+                    </div>
+                </div>
+                <div class="point-fort">
+                    <i class="fas fa-graduation-cap"></i>
+                    <div>
+                        <h2>+ DE 500 FORMATIONS CETIM ACADEMY®</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="discutons-container">
+        <div class="discutons-content">
+            <h2>Discutons de votre projet</h2>
+            <p>Contactez nos experts</p>
+            <a href="#" class="discutons-button">Contactez-nous</a>
+        </div>
+        <div class="discutons-image">
+            <img src="imgs/contact_us.png" alt="Discutons de votre projet">
+        </div>
+    </div>
+
+    <script>
+        function toggleContent(id) {
+            var content = document.getElementById(id);
+            var title = document.getElementById('title' + id.charAt(id.length - 1));
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                title.classList.remove('active');
+            } else {
+                document.querySelectorAll('.approach-content').forEach(function (el) {
+                    el.classList.remove('active');
+                });
+                document.querySelectorAll('.approach-list-vertical h2').forEach(function (el) {
+                    el.classList.remove('active');
+                });
+                content.classList.add('active');
+                title.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

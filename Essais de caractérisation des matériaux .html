@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essais de caractérisation des matériaux</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8faff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0;
+            width: 100%;
+        }
+
+        .header img {
+            width: 50%;
+            height: auto;
+            margin: 0;
+        }
+
+        .header-text {
+            max-width: 50%;
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .header-text p {
+            color: #666;
+            font-size: 14px;
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        .header-text h1 {
+            color: #003366;
+            font-size: 56px;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .content-wrapper {
+            background-color: #e5eaed;
+            width: 100%;
+            padding: 40px 0;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: row;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .intro {
+            flex: 1;
+            max-width: 450px;
+            margin-right: 40px;
+        }
+
+        .intro h1 {
+            color: #003366;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .intro p {
+            font-size: 20px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .challenges {
+            flex: 2;
+        }
+
+        .challenge {
+            background-color: #e5eaed;
+            border-radius: 8px;
+        }
+
+        .challenge h2 {
+            color: #003366;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .challenge p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .challenge h3 {
+            color: #003366;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .points-forts-container {
+            background-color: #003366;
+            padding: 80px 0;
+            color: #fff;
+        }
+
+        .points-forts-container .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .points-forts-text {
+            max-width: 30%;
+        }
+
+        .points-forts-text h1 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .points-forts-text p {
+            font-size: 14px;
+        }
+
+        .points-forts-content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 65%;
+        }
+
+        .point-fort {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .point-fort i {
+            font-size: 30px;
+            margin-right: 15px;
+        }
+
+        .point-fort h2 {
+            font-size: 16px;
+            margin: 0 0 8px;
+        }
+
+        .point-fort p {
+            margin: 0;
+            font-size: 12px;
+        }
+
+        .discutons-container {
+            background-color: #e63946;
+            color: #fff;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .discutons-content {
+            max-width: 50%;
+        }
+
+        .discutons-content h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .discutons-content p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .discutons-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #fff;
+            color: #e63946;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-decoration: none;
+            border: 2px solid #fff;
+            border-radius: 5px;
+        }
+
+        .discutons-image {
+            max-width: 50%;
+        }
+
+        .discutons-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .approach-container {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 40px;
+            background-color: #f8faff;
+        }
+
+        .approach-wrapper {
+            display: flex;
+        }
+
+        .approach-list-vertical {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 30%;
+        }
+
+        .approach-list-vertical li {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .approach-list-vertical li:hover h2,
+        .approach-list-vertical li.active h2 {
+            color: #e63946;
+        }
+
+        .approach-list-vertical li h2 {
+            font-size: 20px;
+            margin: 0;
+            color: #666;
+            transition: color 0.3s;
+        }
+
+        .approach-content {
+            display: none;
+            padding: 20px;
+            background-color: #f8faff;
+            border-radius: 8px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+            width: 70%;
+        }
+
+        .approach-content.active {
+            display: flex;
+        }
+
+        .approach-content ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            flex: 1;
+            margin: 0;
+        }
+
+        .approach-content li {
+            flex: 0 0 calc(50% - 20px);
+            font-size: 16px;
+            line-height: 2;
+            margin-bottom: 20px;
+        }
+
+        .approach-content li.full {
+            flex-basis: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .header img,
+            .header-text {
+                max-width: 100%;
+                padding: 0;
+                text-align: center;
+            }
+
+            .header-text {
+                padding-left: 0;
+                margin-top: 20px;
+            }
+
+            .header-text h1 {
+                font-size: 40px;
+            }
+
+            .content {
+                flex-direction: column;
+                padding: 0 20px;
+            }
+
+            .points-forts-container {
+                background-color: #003366;
+                padding: 80px 0; /* Increased padding */
+                color: #fff;
+            }
+    
+            .points-forts-container .container {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+            }
+    
+            .points-forts-text {
+                max-width: 30%;
+            }
+    
+            .points-forts-text h1 {
+                font-size: 24px; /* Decreased font size */
+                margin-bottom: 15px; /* Adjusted margin */
+            }
+    
+            .points-forts-text p {
+                font-size: 14px; /* Decreased font size */
+            }
+    
+            .points-forts-content {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px; /* Adjusted gap */
+                max-width: 65%;
+            }
+    
+            .point-fort {
+                display: flex;
+                align-items: flex-start;
+            }
+    
+            .point-fort i {
+                font-size: 30px; /* Decreased font size */
+                margin-right: 15px; /* Adjusted margin */
+            }
+    
+            .point-fort h2 {
+                font-size: 16px; /* Decreased font size */
+                margin: 0 0 8px; /* Adjusted margin */
+            }
+    
+            .point-fort p {
+                margin: 0;
+                font-size: 12px; /* Decreased font size */
+            }
+    
+
+            .discutons-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .discutons-content {
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .discutons-image {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="imgs/aim-service.png" alt="Asset Integrity Management (AIM)">
+        <div class="header-text">
+            <p>HOME ➔ Essais de caractérisation des matériaux </p>
+            <h1>Essais de caractérisation  <br>des matériaux</h1>
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <div class="content">
+            <section class="intro">
+                <h1>Essais de caractérisation des matériaux</h1>
+                <p>Innover et garantir une utilisation appropriée des matériaux, sécuriser votre production et votre rentabilité.</p>
+            </section>
+            <section class="challenges">
+                <div class="challenge">
+                    <h2>Vos défis & enjeux</h2>
+                    <p>Dans un contexte normatif international exigeant, les industriels doivent garantir qualité et fiabilité de leurs produits face à des matériaux innovants toujours plus nombreux et soumis à des conditions opérationnelles sévères.</p>
+                    <h3>Innovation et transition écologique</h3>
+                    <p>Qu’il s’agisse d’un lancement de produit, d’un suivi de la qualité en production ou encore d’une défaillance, vous souhaitez identifier les caractéristiques mécaniques et métallurgiques de vos matériaux pour valider une conception, sa conformité à des standards internationaux, la fiabilité de votre process de production ou identifier les causes d’une avarie ...</p>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <div class="content">
+            <section class="challenge">
+                <h2>Nos services</h2>
+                <p>Cetim Maroc vous accompagne à travers une série d'essais normalisés et d’analyses métallurgiques pour déterminer les propriétés physiques et mécaniques d'un matériau métallique ou composite et son adéquation aux applications envisagées.</p>
+                <p>Essais sur mesure : Nos experts en ingénierie d’essai conçoivent et mettent en œuvre des méthodologies et des protocoles d'essais multiphysiques pour répondre à vos besoins spécifiques.</p>
+            </section>
+        </div>
+    </div>
+
+    <div class="approach-container">
+        <h2>Les essais mécaniques (statiques et dynamiques)</h2>
+        <h4>Les essais statiques</h4>
+        <div class="approach-wrapper">
+            <ul class="approach-list-vertical">
+                <li onclick="toggleContent('content1')">
+                    <h2 id="title1">Matériaux métalliques</h2>
+                </li>
+                <li onclick="toggleContent('content2')">
+                    <h2 id="title2">Matériaux composites</h2>
+                </li>
+                <li onclick="toggleContent('content3')">
+                    <h2 id="title3">Normes applicables</h2>
+                </li>
+                <li onclick="toggleContent('content4')">
+                    <h2 id="title4">Accréditations / Qualifications</h2>
+                </li>
+            </ul>
+            <div class="approach-content" id="content1">
+                <ul>
+                    <li class="full"><b>Essai sur éprouvettes avec différents matériaux (aluminium, titane, inconel…)</b></li>
+                    <li class="full"><b>Essai de traction à chaud 900°C</b></li>
+                    <li class="full"><b>Essai traction à température ambiante</b></li>
+                    <li class="full"><b>Essai de Fluage 900°C</b></li>
+                </ul>
+            </div>
+            <div class="approach-content" id="content2">
+                <ul>
+                    <li class="full"><b>Traction perpendiculaire à l'ambiante avec préparation</b></li>
+                    <li class="full"><b>Cisaillement double entaille</b></li>
+                    <li class="full"><b>Cisaillement inter laminaire</b></li>
+                    <li class="full"><b>Pelage a tambour grimpant</b></li>
+                    <li class="full"><b>Cisaillement simple</b></li>
+                </ul>
+            </div>
+            <div class="approach-content" id="content3">
+                <ul>
+                    <li class="full"><b>ASTM E8/ASTM E21/ NF EN 2002-1&2 / ISO 6892-1&2 ; NF EN 2002-5, ASTM E139</b></li>
+                </ul>
+            </div>
+            <div class="approach-content" id="content4">
+                <ul>
+                    <li class="full"><b>NADCAP, COFRAC, SAFRAN, AIRBUS & GENERAL ELECTRIC</b></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="approach-container">
+        <h2>Les essais dynamiques</h2>
+        <div class="approach-wrapper">
+            <ul class="approach-list-vertical">
+                <li onclick="toggleContent('content5')">
+                    <h2 id="title5">Essais de fatigue</h2>
+                </li>
+                <li onclick="toggleContent('content6')">
+                    <h2 id="title6">Essais de fissuration</h2>
+                </li>
+                <li onclick="toggleContent('content7')">
+                    <h2 id="title7">Normes applicables</h2>
+                </li>
+                <li onclick="toggleContent('content8')">
+                    <h2 id="title8">Accréditations / Qualifications</h2>
+                </li>
+            </ul>
+            <div class="approach-content" id="content5">
+                <ul>
+                    <li class="full"><b>Essais de fatigue sur éprouvettes plates, cylindriques et entaillées à température ambiante et élevée (jusqu’à 900°C)</b></li>
+                    <li class="full"><b>Essais de fatigue oligocyclique LCF (essais normalisés et essais sur-mesure)</b></li>
+                    <li class="full"><b>Essais de fatigue vibratoire HCF</b></li>
+                    <li class="full"><b>Essais DWELL sur machines servo-hydrauliques</b></li>
+                    <li class="full"><b>Essais de fluage sur machines servo-hydrauliques</b></li>
+                    <li class="full"><b>Essais de relaxation</b></li>
+                </ul>
+            </div>
+            <div class="approach-content" id="content6">
+                <ul>
+                    <li class="full"><b>Essais de fissuration selon le plan des éprouvettes à température ambiante et élevée (jusqu’à 900°C)</b></li>
+                    <li class="full"><b>Propagation de fissure DaDn : FC7, CT, KBR et KB…</b></li>
+                    <li class="full"><b>Essai de K1C facteur d’intensité de contrainte critique</b></li>
+                </ul>
+            </div>
+            <div class="approach-content" id="content7">
+                <ul>
+                    <li class="full"><b>ASTM E606 ; ASTM E466 ; ASTM E647 ; ASTM E399</b></li>
+                </ul>
+            </div>
+            <div class="approach-content" id="content8">
+                <ul>
+                    <li class="full"><b>NADCAP, COFRAC, SAFRAN, GENERAL ELECTRIC</b></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="approach-container">
+        <h2>Analyses métallurgiques</h2>
+        <div class="approach-wrapper">
+            <ul class="approach-list-vertical">
+                <li onclick="toggleContent('content9')">
+                    <h2 id="title9">Analyses métallographiques</h2>
+                </li>
+                <li onclick="toggleContent('content10')">
+                    <h2 id="title10">Normes applicables</h2>
+                </li>
+                <li onclick="toggleContent('content11')">
+                    <h2 id="title11">Accréditations / Qualifications</h2>
+                </li>
+            </ul>
+            <div class="approach-content" id="content9">
+                <ul>
+                    <li class="full"><b>Analyses métallographiques pour évaluer la qualité, les propriétés et les structures des matériaux métalliques et des alliages</b></li>
+                    <li class="full"><b>Analyses et composition chimique des matériaux métalliques</b></li>
+                    <li class="full"><b>Propriétés mécaniques des matériaux métalliques</b></li>
+                    <li class="full"><b>Examens métallographiques des matériaux métalliques</b></li>
+                    <li class="full"><b>Ingénierie de bancs d’essais sur mesure</b></li>
+                </ul>
+            </div>
+            <div class="approach-content" id="content10">
+                <ul>
+                    <li class="full"><b>ASTM E112/ASTM E47</b></li>
+                </ul>
+            </div>
+            <div class="approach-content" id="content11">
+                <ul>
+                    <li class="full"><b>NADCAP, COFRAC, SAFRAN, GENERAL ELECTRIC</b></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="approach-container">
+        <h2>Analyses chimiques</h2>
+        <div class="approach-wrapper">
+            <ul class="approach-list-vertical">
+                <li onclick="toggleContent('content12')">
+                    <h2 id="title12">Techniques d'analyse</h2>
+                </li>
+                <li onclick="toggleContent('content13')">
+                    <h2 id="title13">Normes applicables</h2>
+                </li>
+                <li onclick="toggleContent('content14')">
+                    <h2 id="title14">Accréditations / Qualifications</h2>
+                </li>
+            </ul>
+            <div class="approach-content" id="content12">
+                <ul>
+                    <li class="full"><b>Identification et vérification de la teneur des éléments présents par :</b></li>
+                    <li><span class="grey">- Analyses directes des matériaux massifs par Spectrométrie d'Émission Optique (SEO)</span></li>
+                    <li><span class="grey">- Analyses après mise en solution par Spectrométrie d'Émission Plasma (SEP)</span></li>
+                    <li class="full"><b>Dosage de la teneur en gaz avec différents analyseurs élémentaires pour quantifier la teneur en hydrogène, en oxygène ou encore en azote</b></li>
+                    <li class="full"><b>Analyse et caractérisation de nombreux métaux et alliages (aciers fortement alliés, alliage de cobalt, alliage de nickel, alliage de titane, alliage d’aluminium)</b></li>
+                </ul>
+            </div>
+            <div class="approach-content" id="content13">
+                <ul>
+                    <li class="full"><b>ASTM E1447</b></li>
+                </ul>
+            </div>
+            <div class="approach-content" id="content14">
+                <ul>
+                    <li class="full"><b>COFRAC, SAFRAN</b></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+     
+    <div class="points-forts-container">
+        <div class="container">
+            <div class="points-forts-text">
+                <h1>Nos points forts pour assurer la réussite de vos projets</h1>
+            </div>
+            <div class="points-forts-content">
+                <div class="point-fort">
+                    <i class="fas fa-tools"></i>
+                    <div>
+                        <h2>Une expertise neutre et reconnue à l’international, notamment à travers les différentes accréditations et qualifications clients
+                        </h2>
+                    </div>
+                </div>
+                <div class="point-fort">
+                    <i class="fas fa-cogs"></i>
+                    <div>
+                        <h2>Des moyens d’essais importants et un service Best Value</h2>
+                    </div>
+                </div>
+                <div class="point-fort">
+                    <i class="fas fa-lightbulb"></i>
+                    <div>
+                        <h2>Un partenaire unique capable de réaliser l’ensemble des essais mécaniques et métallurgiques sur le même site </h2>
+                    </div>
+                </div>
+                <div class="point-fort">
+                    <i class="fas fa-users"></i>
+                    <div>
+                        <h2>Une organisation intégrée, de l’usinage d’éprouvettes à la réalisation des essais offrant une qualité optimum dans les meilleurs délais </h2>
+                    </div>
+                </div>
+                <div class="point-fort">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h2>Un support logistique, notamment pour les clients internationaux</h2>
+                    </div>
+                </div>
+ 
+            </div>
+        </div>
+    </div>
+
+    <div class="discutons-container">
+        <div class="discutons-content">
+            <h2>Discutons de votre projet</h2>
+            <p>Contactez nos experts</p>
+            <a href="#" class="discutons-button">Contactez-nous</a>
+        </div>
+        <div class="discutons-image">
+            <img src="imgs/contact_us.png" alt="Discutons de votre projet">
+        </div>
+    </div>
+
+   
+
+    <script>
+        function toggleContent(id) {
+            var content = document.getElementById(id);
+            var title = document.getElementById('title' + id.charAt(id.length - 1));
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                title.classList.remove('active');
+            } else {
+                document.querySelectorAll('.approach-content').forEach(function (el) {
+                    el.classList.remove('active');
+                });
+                document.querySelectorAll('.approach-list-vertical h2').forEach(function (el) {
+                    el.classList.remove('active');
+                });
+                content.classList.add('active');
+                title.classList.add('active');
+            }
+        }
+    </script>
+    
+</body>
+</html>

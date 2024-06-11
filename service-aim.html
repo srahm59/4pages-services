@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vos défis/enjeux et Une approche à 3 niveaux</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8faff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0;
+            width: 100%;
+        }
+
+        .header img {
+            width: 50%;
+            height: auto;
+            margin: 0;
+        }
+
+        .header-text {
+            max-width: 50%;
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .header-text p {
+            color: #666;
+            font-size: 14px;
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        .header-text h1 {
+            color: #003366;
+            font-size: 56px;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .content-wrapper {
+            background-color: #e5eaed;
+            width: 100%;
+            padding: 40px 0;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: row;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .intro {
+            flex: 1;
+            max-width: 450px;
+            margin-right: 40px;
+        }
+
+        .intro h1 {
+            color: #003366;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .intro p {
+            font-size: 20px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .challenges {
+            flex: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .challenge {
+            padding: 20px;
+            background-color: #e5eaed;
+            border-radius: 8px;
+        }
+
+        .challenge h2 {
+            color: #003366;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .challenge p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        /* Styles for the new section */
+        .approach-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 40px;
+            background-color: #f8faff;
+        }
+
+        .approach-container h1 {
+            color: #003366;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .approach-container p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .approach-wrapper {
+            display: flex;
+        }
+
+        .approach-list-vertical {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 30%;
+        }
+
+        .approach-list-vertical li {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+            transition: color 0.3s;
+            cursor: pointer;
+            margin-bottom: 40px;
+        }
+
+        .approach-list-vertical li span {
+            font-size: 18px;
+            color: #666;
+            margin-right: 10px;
+        }
+
+        .approach-list-vertical li h2 {
+            font-size: 20px;
+            margin: 0;
+            color: #666;
+            transition: color 0.3s;
+        }
+
+        .approach-list-vertical li:hover h2 {
+            color: #000;
+        }
+
+        .approach-list-vertical li h2.active {
+            color: #ff0000;
+        }
+
+        .approach-content {
+            display: none;
+            padding: 20px;
+            background-color: #f8faff;
+            border-radius: 8px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+            width: 70%;
+        }
+
+        .approach-content.active {
+            display: flex;
+        }
+
+        .approach-content ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            flex: 1;
+            margin: 0;
+        }
+
+        .approach-content li {
+            flex: 0 0 calc(50% - 20px);
+            font-size: 16px;
+            line-height: 2;
+            margin-bottom: 20px;
+        }
+
+        .approach-content li.full {
+            flex-basis: 100%;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .grey {
+            color: #666;
+        }
+
+        .points-forts-container {
+            background-color: #003366;
+            padding: 80px 0; /* Increased padding */
+            color: #fff;
+        }
+
+        .points-forts-container .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .points-forts-text {
+            max-width: 30%;
+        }
+
+        .points-forts-text h1 {
+            font-size: 24px; /* Decreased font size */
+            margin-bottom: 15px; /* Adjusted margin */
+        }
+
+        .points-forts-text p {
+            font-size: 14px; /* Decreased font size */
+        }
+
+        .points-forts-content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px; /* Adjusted gap */
+            max-width: 65%;
+        }
+
+        .point-fort {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .point-fort i {
+            font-size: 30px; /* Decreased font size */
+            margin-right: 15px; /* Adjusted margin */
+        }
+
+        .point-fort h2 {
+            font-size: 16px; /* Decreased font size */
+            margin: 0 0 8px; /* Adjusted margin */
+        }
+
+        .point-fort p {
+            margin: 0;
+            font-size: 12px; /* Decreased font size */
+        }
+
+        .discutons-container {
+            background-color: #e63946;
+            color: #fff;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .discutons-content {
+            max-width: 50%;
+        }
+
+        .discutons-content h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .discutons-content p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .discutons-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #fff;
+            color: #e63946;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-decoration: none;
+            border: 2px solid #fff;
+            border-radius: 5px;
+        }
+
+        .discutons-image {
+            max-width: 50%;
+        }
+
+        .discutons-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .header img, .header-text {
+                max-width: 100%;
+                padding: 0;
+                text-align: center;
+            }
+
+            .header-text {
+                padding-left: 0;
+                margin-top: 20px;
+            }
+
+            .header-text h1 {
+                font-size: 40px;
+            }
+
+            .content {
+                flex-direction: column;
+                padding: 0 20px;
+            }
+
+            .challenges {
+                grid-template-columns: 1fr;
+            }
+
+            .approach-wrapper {
+                flex-direction: column;
+            }
+
+            .approach-list-vertical {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .approach-content {
+                width: 100%;
+            }
+
+            .points-forts-container .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .points-forts-text {
+                max-width: 100%;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .points-forts-content {
+                max-width: 100%;
+                grid-template-columns: 1fr;
+            }
+
+            .discutons-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .discutons-content {
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .discutons-image {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="imgs/aim-service.png" alt="Asset Integrity Management (AIM)">
+        <div class="header-text">
+            <p>HOME ➔ ASSET INTEGRITY MANAGEMENT (AIM)</p>
+            <h1>Asset Integrity<br>Management (AIM)</h1>
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <div class="content">
+            <section class="intro">
+                <h1>Vos défis/enjeux</h1>
+                <p>Dans des marchés dynamiques qui évoluent, vous êtes confrontés à de nouveaux défis réglementaires, environnementaux, sociaux, technologiques et numériques.</p>
+                <p>Pour répondre à ces défis, il est essentiel que vous mettiez en place une organisation et des outils qui vous permettent de :</p>
+            </section>
+            <section class="challenges">
+                <div class="challenge">
+                    <h2>Réduire vos dépenses opérationnelles et d'investissement</h2>
+                    <p>En prolongeant la durée de vie de vos équipements. Cela implique une gestion efficace des investissements et une optimisation de la maintenance.</p>
+                </div>
+                <div class="challenge">
+                    <h2>Maîtriser vos risques</h2>
+                    <p>Il est crucial de mettre en place des mesures pour identifier, évaluer et atténuer les risques potentiels liés à vos activités.</p>
+                </div>
+                <div class="challenge">
+                    <h2>Maintenir un niveau élevé de performance de vos équipements</h2>
+                    <p>Cela inclut des aspects tels que la fiabilité, la disponibilité, la maintenance et la sécurité pour assurer un fonctionnement optimal.</p>
+                </div>
+                <div class="challenge">
+                    <h2>Assurer la satisfaction de vos clients en termes de qualité, de coûts et de délais</h2>
+                    <p>Cela nécessite une approche globale qui vise à fournir des produits ou services répondant aux attentes et aux exigences de vos clients de manière efficace et rentable.</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="approach-container">
+        <h1>Une approche à 3 niveaux</h1>
+        <p>Avec notre expérience multisectorielle, Cetim Maroc vous propose une approche 360° basée sur 3 leviers pour un accompagnement personnalisé en fonction de vos enjeux et de votre contexte.</p>
+        
+        <div class="approach-wrapper">
+            <ul class="approach-list-vertical">
+                <li onclick="toggleContent('content1')">
+                    <span>1</span>
+                    <h2 id="title1">Une approche technique et technologique</h2>
+                </li>
+                <li onclick="toggleContent('content2')">
+                    <span>2</span>
+                    <h2 id="title2">Une approche organisationnelle</h2>
+                </li>
+                <li onclick="toggleContent('content3')">
+                    <span>3</span>
+                    <h2 id="title3">Une approche visant la préservation et le développement de votre capital humain</h2>
+                </li>
+            </ul>
+
+            <div class="approach-content" id="content1">
+                <ul>
+                    <li><span class="bold">Tierce Expertise sur l’état de santé et de conformité de vos équipements</span><br><span class="grey">Corrosion, matériaux, assemblages</span></li>
+                    <li><span class="bold">Validation des performances par simulation numérique :</span><br><span class="grey">Dimensionnement mécanique, tenue thermique, écoulement fluidique….</span></li>
+                    <li class="bold">Estimation de la durée de vie résiduelle de vos installations</li>
+                    <li><span class="bold">Inspection de vos équipement :</span><br><span class="grey">CND, automatiser/robotiser le contrôle, détection de fuites et contrôle d’étanchéité</span></li>
+                    <li class="bold">Proposition de solutions IIoT pour la surveillance et le monitoring</li>
+                    <li><span class="bold">Analyse d’avaries, définition de plans de réparation</span><br><span class="grey">et accompagnement à la mise en œuvre des actions correctives</span></li>
+                </ul>
+            </div>
+            <div class="approach-content" id="content2">
+                <ul>
+                    <li><span class="bold">Déploiement d’une démarche RBI</span><br><span class="grey">et des outils associés en collaboration avec vos équipes opérationnelles</li>
+                    <li><span class="bold">Conduite et réalisation de différents types d’analyses</span><br><span class="grey">(analyses de risques, AMDEC, analyse de cycle de vie….)</span></li>
+                    <li><span class="bold">Mise en place de démarche Lean Management</span><br><span class="grey">réorganisation des flux, gestion des postes de travail</span></li>
+                </ul>
+            </div>
+            <div class="approach-content" id="content3">
+                <ul>
+                    <li><span class="bold">Cetim Maroc propose plus de 30 formations Cetim Academy®</span><br><span class="grey">disponibles en présentiel ou en classe virtuelle, en inter ou en intra</span></li>
+                    <li><span class="bold">Sécurité / Santé de vos collaborateurs en exploitation</span><br><span class="grey">gestion des émissions polluantes et des déchets, ergonomie des postes…</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="points-forts-container">
+        <div class="container">
+            <div class="points-forts-text">
+                <h1>Nos points forts</h1>
+                <p>Grâce à notre expertise pluridisciplinaire et multisectorielle, maximisez la performance, la sécurité et la durabilité de vos actifs</p>
+            </div>
+            <div class="points-forts-content">
+                <div class="point-fort">
+                    <i class="fas fa-tools"></i>
+                    <div>
+                        <h2>UNE COMBINAISON UNIQUE D’EXPERTISES TECHNIQUES</h2>
+                        <p>CND, corrosion, analyse de défaillance, DVR…</p>
+                    </div>
+                </div>
+                <div class="point-fort">
+                    <i class="fas fa-cogs"></i>
+                    <div>
+                        <h2>UNE CONFORMITÉ ASSURÉE AVEC LA RÉGLEMENTATION EXISTANTE ET À VENIR</h2>
+                        <p>grâce à notre participation active au sein des différentes instances normative</p>
+                    </div>
+                </div>
+                <div class="point-fort">
+                    <i class="fas fa-lightbulb"></i>
+                    <div>
+                        <h2>DES MOYENS INNOVANTS ET DEDIÉS</h2>
+                        <p>drones, scanners 3D, robotisation, simulation, monitoring, CND avancés, tomographie…</p>
+                    </div>
+                </div>
+                <div class="point-fort">
+                    <i class="fas fa-users"></i>
+                    <div>
+                        <h2>UN ACCOMPAGNEMENT ET UNE DÉMARCHE STRUCTURÉS</h2>
+                        <p>basée sur des méthodologies éprouvées</p>
+                    </div>
+                </div>
+                <div class="point-fort">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h2>25 ANS DE R&D</h2>
+                        <p>dans le domaine de la surveillance</p>
+                    </div>
+                </div>
+                <div class="point-fort">
+                    <i class="fas fa-graduation-cap"></i>
+                    <div>
+                        <h2>+ DE 500 FORMATIONS CETIM ACADEMY®</h2>
+                        <p>pour accompagner l’évolution des métiers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="discutons-container">
+        <div class="discutons-content">
+            <h2>Discutons de votre projet</h2>
+            <p>Contactez nos experts</p>
+            <a href="#" class="discutons-button">Contactez-nous</a>
+        </div>
+        <div class="discutons-image">
+            <img src="imgs/contact_us.png" alt="Discutons de votre projet">
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <p>Learn more about our mission and values.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Service 1</a></li>
+                        <li><a href="#">Service 2</a></li>
+                        <li><a href="#">Service 3</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <p>Get in touch with us through email or phone.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Company Name. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleContent(id) {
+            var content = document.getElementById(id);
+            var title = document.getElementById('title' + id.charAt(id.length - 1));
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                title.classList.remove('active');
+            } else {
+                document.querySelectorAll('.approach-content').forEach(function (el) {
+                    el.classList.remove('active');
+                });
+                document.querySelectorAll('.approach-list-vertical h2').forEach(function (el) {
+                    el.classList.remove('active');
+                });
+                content.classList.add('active');
+                title.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
